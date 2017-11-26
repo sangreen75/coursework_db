@@ -57,13 +57,32 @@
     <Compile Include="DataModel\InputData\Contact.cs" />
     <Compile Include="DataModel\InputData\Manager.cs" />
     <Compile Include="DataModel\ResultData\AppointmentCall.cs" />
+    <Compile Include="Migrations\201711261721230_init.cs" />
+    <Compile Include="Migrations\201711261721230_init.Designer.cs">
+      <DependentUpon>201711261721230_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261729525_init2.cs" />
+    <Compile Include="Migrations\201711261729525_init2.Designer.cs">
+      <DependentUpon>201711261729525_init2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Parsers\ClientPareser.cs" />
+    <Compile Include="Parsers\IParser.cs" />
+    <Compile Include="Parsers\Patterns.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711261721230_init.resx">
+      <DependentUpon>201711261721230_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261729525_init2.resx">
+      <DependentUpon>201711261729525_init2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

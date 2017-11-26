@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.DataModel.ResultData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Application.DataModel.InputData
 {
     public class Manager
     {
-        [Key] public int Id { get; private set; }
+        #region Properties
+        [Key]
+        public int Id { get; private set; }
 
         public CallCenter CallCenter { get; private set; }
 
@@ -22,8 +25,21 @@ namespace Application.DataModel.InputData
         public DateTime EndWorkTime { get; private set; }
 
         public int Salary { get; private set; }
+        #endregion
 
-        public Manager(int id,
+        public bool CanWork(DateTime time) => StartWorkTime <= time && time <= EndWorkTime && FreeTime(time);
+
+        private bool FreeTime(DateTime time)
+        {
+            return (Calls.Count == 0 || Calls.Peek().EndCallTime < time);
+        }
+
+        private Queue<AppointmentCall> Calls { get; set; }
+
+
+        #region Constructor
+        public Manager(
+            int id,
             CallCenter callCenter,
             int qualification,
             int effiency,
@@ -38,6 +54,14 @@ namespace Application.DataModel.InputData
             StartWorkTime = startWorkTime;
             EndWorkTime = endWorkTime;
             Salary = salary;
+        }
+        #endregion
+
+        public AppointmentCall RegisterCall(Client client, int id, DateTime startCall, DateTime endCall)
+        {
+            var appointCall = new AppointmentCall(client, this, this.CallCenter, startCall, endCall, id);
+            Calls.Enqueue(appointCall);
+            return appointCall;
         }
     }
 }

@@ -19,7 +19,7 @@
             : base("name=CallsContext")
         {
         }
-        public DbSet<Contact> Contacts { get; set; }
+        //public DbSet<Contact> Contacts { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CallCenter> CallCenters { get; set; }
