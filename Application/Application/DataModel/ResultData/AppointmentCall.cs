@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Application.DataModel.ResultData
     public class AppointmentCall
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
         public Client Client { get; private set; }
@@ -27,15 +29,15 @@ namespace Application.DataModel.ResultData
             Manager manager,
             CallCenter callCenter,
             DateTime startCallTime,
-            DateTime endCallTime,
-            int id)
+            DateTime endCallTime)
         {
             Client = client;
             Manager = manager;
             CallCenter = callCenter;
             StartCallTime = startCallTime;
             EndCallTime = endCallTime;
-            Id = id;
         }
+
+        public AppointmentCall() { }
     }
 }

@@ -9,11 +9,14 @@ namespace Application.DataModel
 {
     public class CallCenter
     {
-        [Key] public int Id { get; private set; }
+        [Key]
+        public int Id { get; private set; }
 
         public CallCenter(int id)
         {
             Id = id;
         }
+
+        public CallCenter() { }
     }
 }

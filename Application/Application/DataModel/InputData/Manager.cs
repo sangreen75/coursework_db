@@ -18,14 +18,15 @@ namespace Application.DataModel.InputData
 
         public int Qualification { get; private set; }
 
-        public int Effiency { get; private set; }
+        public float Effiency { get; private set; }
 
         public DateTime StartWorkTime { get; private set; }
 
         public DateTime EndWorkTime { get; private set; }
 
         public int Salary { get; private set; }
-        #endregion
+
+        public DateTime? LastCall => (Calls.Count == 0) ? new DateTime?() : Calls.Peek().EndCallTime;
 
         public bool CanWork(DateTime time) => StartWorkTime <= time && time <= EndWorkTime && FreeTime(time);
 
@@ -35,14 +36,14 @@ namespace Application.DataModel.InputData
         }
 
         private Queue<AppointmentCall> Calls { get; set; }
-
+        #endregion
 
         #region Constructor
         public Manager(
             int id,
             CallCenter callCenter,
             int qualification,
-            int effiency,
+            float effiency,
             DateTime startWorkTime,
             DateTime endWorkTime,
             int salary)
@@ -55,11 +56,13 @@ namespace Application.DataModel.InputData
             EndWorkTime = endWorkTime;
             Salary = salary;
         }
+
+        public Manager() { }
         #endregion
 
-        public AppointmentCall RegisterCall(Client client, int id, DateTime startCall, DateTime endCall)
+        public AppointmentCall RegisterCall(Client client, DateTime startCall, DateTime endCall)
         {
-            var appointCall = new AppointmentCall(client, this, this.CallCenter, startCall, endCall, id);
+            var appointCall = new AppointmentCall(client, this, this.CallCenter, startCall, endCall);
             Calls.Enqueue(appointCall);
             return appointCall;
         }

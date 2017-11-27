@@ -23,12 +23,7 @@ namespace Application.DataModel.InputData
             Region = region;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Client)) return false;
-            var client = obj as Client;
-            return (this.Id == client.Id && Income == client.Income);
-        }
+        public Client() { }
 
         public override string ToString()
         {

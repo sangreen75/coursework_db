@@ -38,6 +38,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentAssertions, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -53,10 +62,13 @@
   <ItemGroup>
     <Compile Include="DataModel\CallCenter.cs" />
     <Compile Include="DataModel\CallsContext.cs" />
+    <Compile Include="DataModel\Distributor\CallDistributor.cs" />
     <Compile Include="DataModel\InputData\Client.cs" />
     <Compile Include="DataModel\InputData\Contact.cs" />
     <Compile Include="DataModel\InputData\Manager.cs" />
     <Compile Include="DataModel\ResultData\AppointmentCall.cs" />
+    <Compile Include="DataModel\ResultData\CallCenterDistribution.cs" />
+    <Compile Include="Includer.cs" />
     <Compile Include="Migrations\201711261721230_init.cs" />
     <Compile Include="Migrations\201711261721230_init.Designer.cs">
       <DependentUpon>201711261721230_init.cs</DependentUpon>
@@ -65,12 +77,26 @@
     <Compile Include="Migrations\201711261729525_init2.Designer.cs">
       <DependentUpon>201711261729525_init2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711261909182_init3.cs" />
+    <Compile Include="Migrations\201711261909182_init3.Designer.cs">
+      <DependentUpon>201711261909182_init3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711262011252_change manager class.cs" />
+    <Compile Include="Migrations\201711262011252_change manager class.Designer.cs">
+      <DependentUpon>201711262011252_change manager class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271359535_update manager.cs" />
+    <Compile Include="Migrations\201711271359535_update manager.Designer.cs">
+      <DependentUpon>201711271359535_update manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Parsers\ClientPareser.cs" />
     <Compile Include="Parsers\IParser.cs" />
+    <Compile Include="Parsers\ManagerPareser.cs" />
     <Compile Include="Parsers\Patterns.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\ModelsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -83,6 +109,18 @@
     <EmbeddedResource Include="Migrations\201711261729525_init2.resx">
       <DependentUpon>201711261729525_init2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261909182_init3.resx">
+      <DependentUpon>201711261909182_init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711262011252_change manager class.resx">
+      <DependentUpon>201711262011252_change manager class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271359535_update manager.resx">
+      <DependentUpon>201711271359535_update manager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
