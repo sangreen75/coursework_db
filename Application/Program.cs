@@ -18,7 +18,12 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            
+            IEnumerable<CallCenter> collection = new List<CallCenter>();
+            using (var dbContext = new CallsContext())
+            {
+                collection = dbContext.CallCenters.ToArray();
+            }
+
         }
     }
 }

@@ -55,6 +55,7 @@ namespace Application.DataModel.InputData
             StartWorkTime = startWorkTime;
             EndWorkTime = endWorkTime;
             Salary = salary;
+            Calls = new Queue<AppointmentCall>();
         }
 
         public Manager() { }
@@ -62,9 +63,18 @@ namespace Application.DataModel.InputData
 
         public AppointmentCall RegisterCall(Client client, DateTime startCall, DateTime endCall)
         {
+            if (client == null)
+                throw new ArgumentNullException("Client");
+            if (!CheckCorrectTime(startCall, endCall))
+                return null;
             var appointCall = new AppointmentCall(client, this, this.CallCenter, startCall, endCall);
             Calls.Enqueue(appointCall);
             return appointCall;
+        }
+
+        private bool CheckCorrectTime(DateTime startCall, DateTime endCall)
+        {
+            return (CanWork(startCall) && CanWork(endCall) && startCall < endCall);
         }
     }
 }

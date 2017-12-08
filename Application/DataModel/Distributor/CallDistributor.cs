@@ -9,12 +9,14 @@ namespace Application.DataModel.Distributor
 {
     public class CallDistributor
     {
+        private Dictionary<int, CallCenterDistribution> callCenterAllocation = new Dictionary<int, CallCenterDistribution>();
+
         public IEnumerable<AppointmentCall> AppointCalls()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CallCenterDistribution> GetStats()
+        public IEnumerable<CallCenterDistribution> UpdateStats()
         {
             throw new NotImplementedException();
         }
