@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Application
 {
+    //newline
     class Program
     {
         static void Main(string[] args)
